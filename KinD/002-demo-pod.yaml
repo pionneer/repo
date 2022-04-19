@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod                    # the object schema Kubernetes uses to validate this manifest
+metadata:
+  name: demo                 # a name for your POD
+spec:
+  containers:                # a pod CAN consist of multiple containers, but this one has only one
+  - name: demo               # a name for your CONTAINER
+    image: demo:1.0.0        # the tagged image we previously injected using "kind load"

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod                    # the object schema Kubernetes uses to validate this manifest
+metadata:
+  name: demosolo             # a name for your POD
+  labels:
+    app: demo
+    style: solo
+    count: "1"
+spec:
+  containers:                # a pod CAN consist of multiple containers, this one has only one
+  - name: demox              # a name for your first CONTAINER
+    image: demo:1.0.0        # the tagged image we previously injected using "kind load"
+    command:
+    - php                    # where to start the container
+    args:
+    - -S                     # change the server IP + port binding to listen on
+    - 127.0.0.1:9081         # use a unique port per container in the pod

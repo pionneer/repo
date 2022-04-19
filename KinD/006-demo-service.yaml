@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo                 # a name for your service
+spec:
+  type: ClusterIP            # the default type - included for clarity
+  selector:
+    app: demo                # selection criteria for your targeted pods
+  ports:
+  - port: 80                 # simple pass-thru
