@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demo
+  name: demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: demo
+        image: demo:1.0.0
+        env:
+        - name: GREETING         # the overridden environment variable
+          valueFrom:             # not just value: directly here but valueFrom: as a reference
+            configMapKeyRef:     # a ConfigMap is the source of the data
+              name: greeting     # the name of the ConfigMap
+              key: greeting      # the key within the data section of that ConfigMap

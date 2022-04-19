@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: quotes
+data:
+data:
+  daisy-bell.txt: |
+    Daisy, Daisy,
+    Give me your answer, do!
+    I'm half crazy,
+    All for the love of you!
+    It won't be a stylish marriage,
+    I can't afford a carriage,
+    But you'll look sweet on the seat
+    Of a bicycle built for two!
+  hamlet-nutshell.txt: >
+    "O God, 
+    I could be bound in a nutshell, 
+    and count myself a king of infinite space – 
+    were it not that I have bad dreams."
+    - William Shakespeare, Hamlet

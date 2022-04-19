@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demo
+  name: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      volumes:                   # a pod CAN contain multiple volumes, but this on has only one
+      - name: quotes-volume      # the name of this volume is used to refer to it - e.g. in a "mount"
+        configMap:               # specify the type of volume this is - we're referring to a ConfigMap
+          name: quotes           # the name of the ConfigMap this volume refers to
+      containers:
+      - name: demo
+        image: demo:1.0.0
+        env:                     # "env" section as before
+        - name: GREETING
+          valueFrom:
+            configMapKeyRef:
+              name: greeting
+              key: greeting
+        volumeMounts:            # the "volumeMounts" in a given container are declared parallel to "env"
+        - name: quotes-volume    # the name of the volume you want to mount, from the pod's "volumes" section
+          mountPath: /var/quotes # the container filesystem namespace path - refer to this *inside* the container

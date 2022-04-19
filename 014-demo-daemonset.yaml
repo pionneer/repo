@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: demo-daemon
+  name: demo-daemon
+spec:
+  selector:
+    matchLabels:
+      app: demo-daemon
+  template:
+    metadata:
+      labels:
+        app: demo-daemon
+    spec:
+      containers:
+      - name: demo
+        image: demo:1.0.0
+      tolerations:           # tolerations
+      - key: "VIPOnly"       #
+        operator: "Equal"    #
+        value: "true"        #
+        effect: "NoExecute"  #
